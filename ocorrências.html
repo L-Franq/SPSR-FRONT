@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1E293B">
+    <title>SRA | Registo de ocorrência</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="ocorrencias.css" rel="stylesheet">
+    <script src="ocorrencias.js"></script>
+
+</head>
+
+<body>
+    <div class="shell">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-road"></i></div>
+                <div>SPSR<small>Sistema de Prevenção e Segurança Rodoviário</small></div>
+            </div>
+
+            <div class="side-bottom">SPSR · Sistema de Prevenção e Segurança Rodoviário</div>
+        </aside>
+        <div class="main">
+
+            <main class="content">
+                <div class="heading-row">
+                    <div>
+                        <div class="tema">SPSR · Comunicação rodoviária</div>
+                        <h1>Registar ocorrência</h1>
+                        <p class="lead">Preencha os dados essenciais para a central analisar a situação e, quando
+                            aplicável, encaminhá-la às entidades competentes. A sua segurança vem primeiro.</p>
+                    </div>
+                    <div class="secure"><i class="fa-solid fa-lock"></i> Ligação preparada para API</div>
+                </div>
+                <div class="form-grid">
+                    <form class="panel form-panel" id="incidentForm">
+                        <div class="form-heading">
+                            <div>
+                                <h2>Informações da ocorrência</h2>
+                                <p>Campos com <b>*</b> são obrigatórios.</p>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="field"><label for="type">Tipo de ocorrência <b>*</b></label><select id="type"
+                                    name="type" required>
+                                    <option value="">Seleccione uma opção</option>
+                                    <option>Acidente de viação</option>
+                                    <option>Obstáculo na estrada</option>
+                                    <option>Via danificada</option>
+                                    <option>Congestionamento</option>
+                                    <option>Inundação</option>
+                                    <option>Deslizamento de terra</option>
+                                    <option>Incêndio</option>
+                                    <option>Outro imprevisto</option>
+                                </select></div>
+                            <div class="field"><label for="severity">Gravidade aparente <b>*</b></label><select
+                                    id="severity" name="severity" required>
+                                    <option value="">Seleccione uma opção</option>
+                                    <option value="baixa">Baixa — sem perigo imediato</option>
+                                    <option value="media">Média — circulação condicionada</option>
+                                    <option value="alta">Alta — risco ou feridos</option>
+                                    <option value="critica">Crítica — perigo iminente</option>
+                                    <option value="desconhecida">Não sei avaliar</option>
+                                </select></div>
+                            <div class="field"><label for="province">Província <b>*</b></label><select id="province"
+                                    name="province" required>
+                                    <option value="">Seleccione a província</option>
+                                    <option>Luanda</option>
+                                    <option>Bengo</option>
+                                    <option>Benguela</option>
+                                    <option>Bié</option>
+                                    <option>Cabinda</option>
+                                    <option>Cuando</option>
+                                    <option>Cuanza-Norte</option>
+                                    <option>Cuanza-Sul</option>
+                                    <option>Cubango</option>
+                                    <option>Cunene</option>
+                                    <option>Huambo</option>
+                                    <option>Huíla</option>
+                                    <option>Icolo e Bengo</option>
+                                    <option>Lunda-Norte</option>
+                                    <option>Lunda-Sul</option>
+                                    <option>Malanje</option>
+                                    <option>Moxico</option>
+                                    <option>Moxico Leste</option>
+                                    <option>Namibe</option>
+                                    <option>Uíge</option>
+                                    <option>Zaire</option>
+                                </select></div>
+                            <div class="field"><label for="municipality">Município / zona <b>*</b></label><input
+                                    id="municipality" name="municipality" placeholder="Ex.: Viana, Talatona..."
+                                    required></div>
+                            <div class="field"><label for="road">Estrada / referência</label><input id="road"
+                                    name="road" placeholder="Rua, estrada, quilómetro..."></div>
+                            <div class="field"><label for="when">Quando ocorreu? <b>*</b></label><select id="when"
+                                    name="when" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Acabou de acontecer</option>
+                                    <option>Há menos de 1 hora</option>
+                                    <option>Há 1 a 3 horas</option>
+                                    <option>Hoje</option>
+                                    <option>Não sei</option>
+                                </select></div>
+                            <div class="field"><label for="blocked">Circulação da via</label><select id="blocked"
+                                    name="blocked">
+                                    <option value="">Seleccione</option>
+                                    <option>Normal</option>
+                                    <option>Parcialmente condicionada</option>
+                                    <option>Totalmente bloqueada</option>
+                                    <option>Não sei</option>
+                                </select></div>
+                            <div class="field"><label for="people">Há pessoas feridas ou em perigo?</label><select
+                                    id="people" name="people">
+                                    <option value="">Seleccione</option>
+                                    <option>Sim</option>
+                                    <option>Não</option>
+                                    <option>Não consigo confirmar</option>
+                                </select></div>
+                            <div class="field full"><label for="description">Descrição da ocorrência
+                                    <b>*</b></label><textarea id="description" name="description" maxlength="1500"
+                                    required
+                                    placeholder="Descreva o que aconteceu, os riscos observados e outras informações úteis..."></textarea>
+                                <div class="voice-tools"><button class="btn soft" type="button" id="voiceBtn"
+                                        onclick="toggleVoice()"><i class="fa-solid fa-microphone"></i> Ditar
+                                        descrição</button><button class="btn secondary" type="button"
+                                        onclick="document.getElementById('description').value=''"><i
+                                            class="fa-solid fa-eraser"></i> Limpar</button><span
+                                        id="voiceStatus">Reconhecimento de voz conforme suporte do navegador.</span>
+                                </div>
+                            </div>
+                            <div class="field"><label for="contact">Contacto (opcional)</label><input id="contact"
+                                    name="contact" type="tel" placeholder="+244 9XX XXX XXX"></div>
+                            <div class="field"><label for="source">Como identificou a ocorrência?</label><select
+                                    id="source" name="source">
+                                    <option value="">Seleccione</option>
+                                    <option>Estava no local</option>
+                                    <option>Soube por outra pessoa</option>
+                                    <option>Observei durante a viagem</option>
+                                    <option>Outro</option>
+                                </select></div>
+                            <div class="field full"><label for="location">Coordenadas GPS</label>
+                                <div class="gps-row"><input id="location" name="location"
+                                        placeholder="Localização ainda não obtida" readonly><button
+                                        class="btn secondary" type="button" onclick="getGPS()"><i
+                                            class="fa-solid fa-location-crosshairs"></i> Obter localização</button>
+                                </div><small class="hint">A localização só é recolhida após a sua autorização.</small>
+                            </div>
+                        </div>
+                        <div class="form-bottom"><span><i class="fa-solid fa-shield-halved"></i> Os dados serão tratados
+                                conforme a política de privacidade SRA.</span>
+                            <div><button class="btn secondary" type="reset">Limpar formulário</button><button
+                                    class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar
+                                    ocorrência</button></div>
+                        </div>
+                    </form>
+                    <aside class="right-col">
+                        <div class="info-card">
+                            <div class="info-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <h3>Em caso de emergência</h3>
+                            <p>Não se aproxime de veículos acidentados nem permaneça numa zona de risco. Contacte
+                            directamente os serviços de emergência quando necessário.</p>
+                        </div>
+                </div>
+        </div>
+        </aside>
+    </div>
+    </main>
+
+    </div>
+    </div>
+
+</body>
+
+</html>
