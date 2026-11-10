@@ -1,0 +1,470 @@
+
+
+
+/* ==========================
+   CONFIGURAÇÕES GERAIS
+========================== */
+
+:root {
+    --background: #F8FAFC;
+    --dark: #1E293B;
+    --primary: #0284C7;
+    --secondary: #475569;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --light-blue: #E0F2FE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+/* ==========================
+   CONTAINER PRINCIPAL
+========================== */
+
+.login_container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ==========================
+   LADO VISUAL
+========================== */
+
+.login_visual {
+    width: 45%;
+    background: var(--dark);
+    color: var(--white);
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login_visual::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: var(--primary);
+    opacity: 0.15;
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+}
+
+.login_visual::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    bottom: -80px;
+    left: -80px;
+}
+
+.visual_content {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.brand_icon {
+    background: var(--primary);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand_dot {
+    color: var(--primary);
+}
+
+.visual_text {
+    margin-top: 100px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.15);
+    color: #7DD3FC;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.visual_text h1 {
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.visual_text p {
+    color: #CBD5E1;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.visual_footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94A3B8;
+    margin-top: 100px;
+    font-size: 14px;
+}
+
+.visual_footer i {
+    color: #38BDF8;
+}
+
+/* ==========================
+   FORMULÁRIO
+========================== */
+
+.login_form_section {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login_form_wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.mobile_brand {
+    display: none;
+}
+
+.form_header {
+    margin-bottom: 35px;
+}
+
+.welcome_label {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.form_header h2 {
+    font-size: 32px;
+    margin: 12px 0;
+}
+
+.form_header p {
+    color: var(--secondary);
+    font-size: 15px;
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+.from_group {
+    margin-bottom: 24px;
+}
+
+.from_group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.input_wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: 10px;
+    padding: 0 15px;
+    height: 55px;
+    transition: 0.3s;
+}
+
+.input_wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.input_wrapper > i {
+    color: var(--secondary);
+    font-size: 16px;
+}
+
+.input_wrapper input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 15px;
+    color: var(--dark);
+    font-size: 14px;
+}
+
+.input_wrapper input::placeholder {
+    color: #94A3B8;
+}
+
+.toggle_password {
+    border: none;
+    background: transparent;
+    color: var(--secondary);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+/* ==========================
+   ESQUECEU A SENHA
+========================== */
+
+.label_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot_password {
+    color: var(--primary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.forgot_password:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   MANTER SESSÃO
+========================== */
+
+.remember_container {
+    margin: 5px 0 25px;
+}
+
+.remember_label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.remember_label input {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+}
+
+/* ==========================
+   BOTÃO LOGIN
+========================== */
+
+.login_button {
+    width: 100%;
+    height: 55px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login_button:hover {
+    background: #0369A1;
+    transform: translateY(-1px);
+}
+
+.login_button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==========================
+   CADASTRO
+========================== */
+
+.register_link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+.register_link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.register_link a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   PRIVACIDADE
+========================== */
+
+.privacy_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 45px;
+    color: var(--secondary);
+    font-size: 12px;
+    text-align: center;
+}
+
+.privacy_footer i {
+    color: var(--primary);
+}
+
+.privacy_footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media (max-width: 900px) {
+
+    .login_visual {
+        width: 40%;
+        padding: 30px;
+    }
+
+    .login_form_section {
+        width: 60%;
+        padding: 30px;
+    }
+
+    .visual_text {
+        margin-top: 70px;
+    }
+
+    .visual_text h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .login_container {
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .login_visual {
+        display: none;
+    }
+
+    .login_form_section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 25px;
+    }
+
+    .login_form_wrapper {
+        max-width: 100%;
+    }
+
+    .mobile_brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 60px;
+    }
+
+    .mobile_brand i {
+        color: var(--primary);
+        font-size: 25px;
+    }
+
+    .mobile_brand span {
+        color: var(--primary);
+    }
+
+    .form_header h2 {
+        font-size: 28px;
+    }
+
+    .privacy_footer {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .login_form_section {
+        padding: 18px;
+    }
+
+    .mobile_brand {
+        margin-bottom: 40px;
+    }
+
+    .form_header h2 {
+        font-size: 25px;
+    }
+
+    .input_wrapper {
+        height: 50px;
+    }
+
+    .login_button {
+        height: 50px;
+    }
+}

@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+    --bg-main: #F8FAFC;
+    --text-dark: #1E293B;
+    --accent-primary: #0284C7;
+    --slate-muted: #475569;
+    --card-border: rgba(71, 85, 105, 0.12);
+}
+
+/* Arquitetura Bento Grid */
+.bento_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .bento_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .bento_grid {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    /* Layout dos Cards no Grid Desktop */
+    .bento_map {
+        grid-column: span 8;
+        grid-row: span 2;
+    }
+
+    .bento_zone {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
+
+    .bento_report {
+        grid-column: span 4;
+    }
+
+    .bento_history {
+        grid-column: span 5;
+    }
+
+    .bento_ads {
+        grid-column: span 3;
+    }
+}
+
+.bento_card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .bento_card:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    }
+
+#map {
+    width: 100%;
+    height: 380px;
+    border-radius: 0.75rem;
+    z-index: 10;
+}
+
+/* Personalização da Barra de Scroll Interna das Listas */
+.barra_scroll_personalizada::-webkit-scrollbar {
+    width: 5px;
+}
+
+.barra_scroll_personalizada::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.barra_scroll_personalizada::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}

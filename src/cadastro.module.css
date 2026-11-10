@@ -1,0 +1,501 @@
+
+/* ==========================
+   CONFIGURAÇÕES GERAIS
+========================== */
+
+:root {
+    --background: #F8FAFC;
+    --dark: #1E293B;
+    --primary: #0284C7;
+    --secondary: #475569;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --light-blue: #E0F2FE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+/* ==========================
+   CONTAINER PRINCIPAL
+========================== */
+
+.register_container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ==========================
+   LADO VISUAL
+========================== */
+
+.register_visual {
+    width: 42%;
+    background: var(--dark);
+    color: var(--white);
+    padding: 45px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.register_visual::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: var(--primary);
+    opacity: 0.15;
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+}
+
+.register_visual::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    bottom: -80px;
+    left: -80px;
+}
+
+.visual_content {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================
+   MARCA
+========================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.brand_icon {
+    background: var(--primary);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand_dot {
+    color: var(--primary);
+}
+
+/* ==========================
+   TEXTO VISUAL
+========================== */
+
+.visual_text {
+    margin-top: 65px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.15);
+    color: #7DD3FC;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.visual_text h1 {
+    font-size: clamp(30px, 3vw, 44px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.visual_text p {
+    color: #CBD5E1;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* ==========================
+   FEATURES
+========================== */
+
+.visual_features {
+    display: grid;
+    gap: 18px;
+    margin-top: 45px;
+}
+
+.feature_item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+.feature_icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background: rgba(2, 132, 199, 0.15);
+    color: #38BDF8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature_item h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.feature_item p {
+    font-size: 12px;
+    color: #94A3B8;
+    line-height: 1.5;
+}
+
+/* ==========================
+   RODAPÉ VISUAL
+========================== */
+
+.visual_footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94A3B8;
+    margin-top: 50px;
+    font-size: 13px;
+}
+
+.visual_footer i {
+    color: #38BDF8;
+}
+
+/* ==========================
+   FORMULÁRIO
+========================== */
+
+.register_form_section {
+    width: 58%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.register_form_wrapper {
+    width: 100%;
+    max-width: 460px;
+}
+
+.mobile_brand {
+    display: none;
+}
+
+.form_header {
+    margin-bottom: 28px;
+}
+
+.welcome_label {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.form_header h2 {
+    font-size: 32px;
+    margin: 12px 0;
+}
+
+.form_header p {
+    color: var(--secondary);
+    font-size: 15px;
+}
+
+/* ==========================
+   CAMPOS
+========================== */
+
+.form_group {
+    margin-bottom: 18px;
+}
+
+.form_group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.input_wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: 10px;
+    padding: 0 15px;
+    height: 52px;
+    transition: 0.3s;
+}
+
+.input_wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.input_wrapper > i {
+    color: var(--secondary);
+    font-size: 15px;
+}
+
+.input_wrapper input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 14px;
+    color: var(--dark);
+    font-size: 14px;
+}
+
+.input_wrapper input::placeholder {
+    color: #94A3B8;
+}
+
+/* ==========================
+   POLÍTICA
+========================== */
+
+.privacy_checkbox {
+    margin: 24px 0;
+}
+
+.privacy_checkbox label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--secondary);
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.privacy_checkbox input {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    margin-top: 3px;
+    accent-color: var(--primary);
+}
+
+.privacy_checkbox a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.privacy_checkbox a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   BOTÃO CADASTRO
+========================== */
+
+.register_button {
+    width: 100%;
+    height: 54px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register_button:hover {
+    background: #0369A1;
+    transform: translateY(-1px);
+}
+
+.register_button:active {
+    transform: scale(0.99);
+}
+
+/* ==========================
+   LOGIN LINK
+========================== */
+
+.login_link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+.login_link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.login_link a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   RODAPÉ PRIVACIDADE
+========================== */
+
+.privacy_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+    color: var(--secondary);
+    font-size: 12px;
+    text-align: center;
+}
+
+.privacy_footer i {
+    color: var(--primary);
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media (max-width: 1000px) {
+
+    .register_visual {
+        width: 38%;
+        padding: 30px;
+    }
+
+    .register_form_section {
+        width: 62%;
+        padding: 30px;
+    }
+
+    .visual_text {
+        margin-top: 50px;
+    }
+
+    .visual_text h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .register_container {
+        flex-direction: column;
+    }
+
+    .register_visual {
+        display: none;
+    }
+
+    .register_form_section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 25px;
+    }
+
+    .register_form_wrapper {
+        max-width: 100%;
+    }
+
+    .mobile_brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .mobile_brand i {
+        color: var(--primary);
+        font-size: 25px;
+    }
+
+    .mobile_brand span {
+        color: var(--primary);
+    }
+
+    .form_header h2 {
+        font-size: 28px;
+    }
+
+    .form_group {
+        margin-bottom: 16px;
+    }
+
+    .privacy_footer {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .register_form_section {
+        padding: 18px;
+    }
+
+    .mobile_brand {
+        margin-bottom: 30px;
+    }
+
+    .form_header h2 {
+        font-size: 25px;
+    }
+
+    .input_wrapper {
+        height: 48px;
+    }
+
+    .register_button {
+        height: 50px;
+    }
+}
+
+

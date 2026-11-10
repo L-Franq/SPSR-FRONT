@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root {
+    --bg-main: #F8FAFC;
+    --text-dark: #1E293B;
+    --accent-primary: #0284C7;
+    --slate-muted: #475569;
+    --card-border: rgba(71, 85, 105, 0.12);
+}

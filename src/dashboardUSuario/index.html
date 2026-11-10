@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPSR - Dashboard do Utilizador</title>
+
+    <!-- Font Awesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet JS (Estilos do Mapa) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- SweetAlert2 (Notificações e Alertas) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Tailwind CSS (Utilitários Responsivos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    
+
+    <!-- Conteúdo Principal do Dashboard -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Banner Informativo da Zona Atual -->
+        <div class="mb-6 bg-slate-800 text-white p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-3 bg-sky-600 rounded-xl">
+                    <i class="fa-solid fa-location-dot text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-sm sm:text-base">Zona Atual: <span id="zona-atual" class="text-sky-400">Via Expressa - Quilómetro 14</span></h2>
+                    <p class="text-xs text-slate-300">Nível de Risco: <span class="text-amber-400 font-medium">Moderado (Obras na pista)</span></p>
+                </div>
+            </div>
+            <button onclick="atualizarDadosPainel()" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded-lg transition text-slate-200 flex items-center gap-2 self-end sm:self-auto">
+                <i class="fa-solid fa-rotate-right" id="icone-atualizar"></i> Atualizar Dados
+            </button>
+        </div>
+
+        <!-- Bento Grid de Módulos -->
+        <div class="bento-grid">
+
+            <!-- Card 1: Mapa Interativo de Incidentes -->
+            <div class="bento-card bento-map flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-sky-600"></i>
+                        <h2 class="font-bold text-slate-800">Mapa de Incidentes</h2>
+                    </div>
+                    <span class="text-xs text-slate-500">Atualizado ao vivo</span>
+                </div>
+                <div id="map"></div>
+            </div>
+
+            <!-- Card 2: Visualizar Ocorrências na Zona -->
+            <div class="bento-card bento-zone flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-list-ul text-sky-600"></i>
+                        <h2 class="font-bold text-slate-800">Ocorrências na Zona</h2>
+                    </div>
+                    <span id="contador-ocorrencias-zona" class="bg-sky-100 text-sky-700 text-xs px-2.5 py-0.5 rounded-full font-semibold">0</span>
+                </div>
+
+                <!-- Lista de Ocorrências (Receberá os dados do Endpoint) -->
+                <div id="lista-ocorrencias-zona" class="space-y-3 flex-1 overflow-y-auto max-h-[320px] barra-scroll-personalizada pr-1">
+                    <!-- Skeleton Loader de carregamento -->
+                    <div class="animate-pulse space-y-3">
+                        <div class="h-16 bg-slate-100 rounded-xl"></div>
+                        <div class="h-16 bg-slate-100 rounded-xl"></div>
+                        <div class="h-16 bg-slate-100 rounded-xl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Reportar Ocorrência (Ação Rápida / Redirecionamento) -->
+            <div class="bento-card bento-report bg-gradient-to-br from-sky-600 to-sky-700 text-white flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 text-sky-200 mb-2">
+                        <i class="fa-solid fa-bullhorn text-white"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-sky-100">Ação Rápida</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2">Presenciou uma Ocorrência?</h2>
+                    <p class="text-xs text-sky-100 leading-relaxed mb-4">
+                        Reporte acidentes, vias bloqueadas ou buracos graves para alertar outros condutores.
+                    </p>
+                </div>
+                <button onclick="abrirModalReportar()" class="w-full bg-white hover:bg-slate-100 text-sky-700 font-bold py-3 px-4 rounded-xl shadow transition text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus-circle"></i>
+                    Reportar Nova Ocorrência
+                </button>
+            </div>
+
+            <!-- Card 4: Registro de Ocorrências Pessoais do Utilizador -->
+            <div class="bento-card bento-history flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-sky-600"></i>
+                        <h2 class="font-bold text-slate-800">Meu Histórico</h2>
+                    </div>
+                    <span class="text-xs text-slate-500">Minhas participações</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 mb-3 text-center">
+                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                        <p class="text-lg font-bold text-slate-800" id="estatistica-total">0</p>
+                        <p class="text-[10px] text-slate-500 uppercase">Enviados</p>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-100">
+                        <p class="text-lg font-bold text-amber-600" id="estatistica-pendentes">0</p>
+                        <p class="text-[10px] text-amber-600 uppercase">Em Análise</p>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-lg border border-emerald-100">
+                        <p class="text-lg font-bold text-emerald-600" id="estatistica-resolvidos">0</p>
+                        <p class="text-[10px] text-emerald-600 uppercase">Resolvidos</p>
+                    </div>
+                </div>
+
+                <div id="lista-historico-utilizador" class="space-y-2 overflow-y-auto max-h-[120px] barra-scroll-personalizada">
+                    <!-- Preenchido dinamicamente via JS -->
+                </div>
+            </div>
+
+            <!-- Card 5: Portal de Anúncios (Parceiros & Seguradoras) -->
+            <div class="bento-card bento-ads flex flex-col justify-between border-sky-100 bg-sky-50/30">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2 py-0.5 rounded">Parceiros</span>
+                        <i class="fa-solid fa-rectangle-ad text-slate-400"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-sm">Portal de Serviços & Seguros</h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Consulte planos de assistência rodoviária e serviços mecânicos parceiros.
+                    </p>
+                </div>
+                <a href="#portal-anuncios" onclick="navegarParaPortalAnuncios(event)" class="mt-4 w-full border border-sky-600 text-sky-600 hover:bg-sky-600 hover:text-white font-medium py-2 px-3 rounded-lg text-xs transition text-center flex items-center justify-center gap-2">
+                    Aceder ao Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            &copy; 2026 SPSR - Sistema de Prevenção e Segurança Rodoviária.
+        </div>
+    </footer>
+
+    <!-- Ficheiro de Lógica e Endpoints -->
+    <script src="script.js"></script>
+</body>
+</html>
