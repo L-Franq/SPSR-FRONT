@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,49 +9,47 @@
     <!-- Font Awesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Leaflet JS (Estilos do Mapa) -->
+    <!-- Leaflet JS (Mapa) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- SweetAlert2 (Notificações e Alertas) -->
+    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Tailwind CSS (Utilitários Responsivos) -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="estilo.css">
 </head>
-<body class="flex flex-col min-h-screen">
 
-    <!-- Cabeçalho Principal / Navegação -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow-sm">
+<body class="pagina-dashboard">
+
+    <!-- Cabeçalho Principal -->
+    <header class="cabecalho-principal">
+        <div class="cabecalho-conteudo">
+            <div class="brand-area">
+                <div class="brand-icone">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <div>
-                    <h1 class="font-bold text-slate-800 leading-tight text-base sm:text-lg">Painel de Segurança Rodoviária</h1>
-                    <p class="text-xs text-slate-500 hidden sm:block">Prevenção e Segurança em Tempo Real</p>
+                <div class="brand-texto">
+                    <h1 class="brand-titulo">Painel de Segurança Rodoviária</h1>
+                    <p class="brand-subtitulo">Prevenção e Segurança em Tempo Real</p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
-                <button onclick="dispararAlertaEmergencia()" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 border border-red-200">
+            <div class="user-actions-area">
+                <button onclick="dispararAlertaEmergencia()" class="btn-sos">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span class="hidden sm:inline">Alerta SOS</span>
+                    <span>Alerta SOS</span>
                 </button>
 
-                <div class="h-8 w-px bg-slate-200"></div>
+                <div class="divisor-vertical"></div>
 
-                <div class="flex items-center gap-3">
-                    <div class="text-right hidden sm:block">
-                        <p class="text-sm font-semibold text-slate-800" id="nome-utilizador">Nerissa Chindombe</p>
-                        <span class="text-xs text-emerald-600 flex items-center justify-end gap-1">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Ativo
+                <div class="user-profile">
+                    <div class="user-info">
+                        <p class="user-nome" id="nome-utilizador">Nerissa Chindombe</p>
+                        <span class="user-status">
+                            <span class="ponto-status"></span> Ativo
                         </span>
                     </div>
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-600 font-medium">
+                    <div class="user-avatar">
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
@@ -58,137 +57,127 @@
         </div>
     </header>
 
-    <!-- Conteúdo Principal do Dashboard -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Conteúdo Principal -->
+    <main class="conteudo-principal">
 
-        <!-- Banner Informativo da Zona Atual -->
-        <div class="mb-6 bg-slate-800 text-white p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="p-3 bg-sky-600 rounded-xl">
-                    <i class="fa-solid fa-location-dot text-lg"></i>
+        <!-- Banner Informativo -->
+        <section class="banner-zona">
+            <div class="banner-detalhes">
+                <div class="banner-icone">
+                    <i class="fa-solid fa-location-dot"></i>
                 </div>
-                <div>
-                    <h2 class="font-semibold text-sm sm:text-base">Zona Atual: <span id="zona-atual" class="text-sky-400">Via Expressa - Quilómetro 14</span></h2>
-                    <p class="text-xs text-slate-300">Nível de Risco: <span class="text-amber-400 font-medium">Moderado (Obras na pista)</span></p>
+                <div class="banner-texto">
+                    <h2>Zona Atual: <span id="zona-atual" class="texto-destaque">Via Expressa - Kilómetro 14</span></h2>
+                    <p>Nível de Risco: <span class="texto-alerta">Moderado (Obras na pista)</span></p>
                 </div>
             </div>
-            <button onclick="atualizarDadosPainel()" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded-lg transition text-slate-200 flex items-center gap-2 self-end sm:self-auto">
-                <i class="fa-solid fa-rotate-right" id="icone-atualizar"></i> Atualizar Dados
+            <button onclick="atualizarDadosPainel()" class="btn-atualizar">
+                <i class="fa-solid fa-rotate-right" id="icone-atualizar"></i>
+                <span>Atualizar Dados</span>
             </button>
-        </div>
+        </section>
 
-        <!-- Bento Grid de Módulos -->
+        <!-- Bento Grid -->
         <div class="bento-grid">
 
-            <!-- Card 1: Mapa Interativo de Incidentes -->
-            <div class="bento-card bento-map flex flex-col justify-between">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-map-location-dot text-sky-600"></i>
-                        <h2 class="font-bold text-slate-800">Mapa de Incidentes</h2>
+            <!-- Módulo 1: Mapa Interativo -->
+            <article class="bento-card bento-mapa">
+                <div class="card-cabecalho">
+                    <div class="card-titulo">
+                        <i class="fa-solid fa-map-location-dot icone-sky"></i>
+                        <h2>Mapa de Incidentes</h2>
                     </div>
-                    <span class="text-xs text-slate-500">Atualizado ao vivo</span>
+                    <span class="tag-status">Atualizado ao vivo</span>
                 </div>
                 <div id="map"></div>
-            </div>
+            </article>
 
-            <!-- Card 2: Visualizar Ocorrências na Zona -->
-            <div class="bento-card bento-zone flex flex-col">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-list-ul text-sky-600"></i>
-                        <h2 class="font-bold text-slate-800">Ocorrências na Zona</h2>
+            <!-- Módulo 2: Ocorrências na Zona -->
+            <article class="bento-card bento-zona">
+                <div class="card-cabecalho">
+                    <div class="card-titulo">
+                        <i class="fa-solid fa-list-ul icone-sky"></i>
+                        <h2>Ocorrências na Zona</h2>
                     </div>
-                    <span id="contador-ocorrencias-zona" class="bg-sky-100 text-sky-700 text-xs px-2.5 py-0.5 rounded-full font-semibold">0</span>
+                    <span id="contador-ocorrencias-zona" class="badge-contador">0</span>
                 </div>
 
-                <!-- Lista de Ocorrências (Receberá os dados do Endpoint) -->
-                <div id="lista-ocorrencias-zona" class="space-y-3 flex-1 overflow-y-auto max-h-[320px] barra-scroll-personalizada pr-1">
-                    <!-- Skeleton Loader de carregamento -->
-                    <div class="animate-pulse space-y-3">
-                        <div class="h-16 bg-slate-100 rounded-xl"></div>
-                        <div class="h-16 bg-slate-100 rounded-xl"></div>
-                        <div class="h-16 bg-slate-100 rounded-xl"></div>
-                    </div>
+                <div id="lista-ocorrencias-zona" class="lista-scroll">
+                    <p class="mensagem-vazia">A carregar ocorrências...</p>
                 </div>
-            </div>
+            </article>
 
-            <!-- Card 3: Reportar Ocorrência (Ação Rápida / Redirecionamento) -->
-            <div class="bento-card bento-report bg-gradient-to-br from-sky-600 to-sky-700 text-white flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-2 text-sky-200 mb-2">
-                        <i class="fa-solid fa-bullhorn text-white"></i>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-sky-100">Ação Rápida</span>
+            <!-- Módulo 3: Reportar Ocorrência -->
+            <article class="bento-card bento-reportar">
+                <div class="reportar-conteudo">
+                    <div class="reportar-badge">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span>Ação Rápida</span>
                     </div>
-                    <h2 class="text-xl font-bold mb-2">Presenciou uma Ocorrência?</h2>
-                    <p class="text-xs text-sky-100 leading-relaxed mb-4">
-                        Reporte acidentes, vias bloqueadas ou buracos graves para alertar outros condutores.
-                    </p>
+                    <h2>Presenciou uma Ocorrência?</h2>
+                    <p>Reporte acidentes, vias bloqueadas ou buracos graves para alertar outros condutores.</p>
                 </div>
-                <button onclick="abrirModalReportar()" class="w-full bg-white hover:bg-slate-100 text-sky-700 font-bold py-3 px-4 rounded-xl shadow transition text-sm flex items-center justify-center gap-2">
+                <button onclick="abrirModalReportar()" class="btn-reportar-acao">
                     <i class="fa-solid fa-plus-circle"></i>
                     Reportar Nova Ocorrência
                 </button>
-            </div>
+            </article>
 
-            <!-- Card 4: Registro de Ocorrências Pessoais do Utilizador -->
-            <div class="bento-card bento-history flex flex-col justify-between">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-clock-rotate-left text-sky-600"></i>
-                        <h2 class="font-bold text-slate-800">Meu Histórico</h2>
+            <!-- Módulo 4: Registro Pessoal -->
+            <article class="bento-card bento-historico">
+                <div class="card-cabecalho">
+                    <div class="card-titulo">
+                        <i class="fa-solid fa-clock-rotate-left icone-sky"></i>
+                        <h2>Meu Histórico</h2>
                     </div>
-                    <span class="text-xs text-slate-500">Minhas participações</span>
+                    <span class="tag-status">Minhas participações</span>
                 </div>
 
-                <div class="grid grid-cols-3 gap-2 mb-3 text-center">
-                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
-                        <p class="text-lg font-bold text-slate-800" id="estatistica-total">0</p>
-                        <p class="text-[10px] text-slate-500 uppercase">Enviados</p>
+                <div class="estatisticas-grid">
+                    <div class="estatistica-box">
+                        <p class="estatistica-numero" id="estatistica-total">0</p>
+                        <p class="estatistica-label">Enviados</p>
                     </div>
-                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-100">
-                        <p class="text-lg font-bold text-amber-600" id="estatistica-pendentes">0</p>
-                        <p class="text-[10px] text-amber-600 uppercase">Em Análise</p>
+                    <div class="estatistica-box box-alerta">
+                        <p class="estatistica-numero" id="estatistica-pendentes">0</p>
+                        <p class="estatistica-label">Em Análise</p>
                     </div>
-                    <div class="bg-emerald-50 p-2 rounded-lg border border-emerald-100">
-                        <p class="text-lg font-bold text-emerald-600" id="estatistica-resolvidos">0</p>
-                        <p class="text-[10px] text-emerald-600 uppercase">Resolvidos</p>
+                    <div class="estatistica-box box-sucesso">
+                        <p class="estatistica-numero" id="estatistica-resolvidos">0</p>
+                        <p class="estatistica-label">Resolvidos</p>
                     </div>
                 </div>
 
-                <div id="lista-historico-utilizador" class="space-y-2 overflow-y-auto max-h-[120px] barra-scroll-personalizada">
-                    <!-- Preenchido dinamicamente via JS -->
-                </div>
-            </div>
+                <div id="lista-historico-utilizador" class="lista-scroll lista-curta">
 
-            <!-- Card 5: Portal de Anúncios (Parceiros & Seguradoras) -->
-            <div class="bento-card bento-ads flex flex-col justify-between border-sky-100 bg-sky-50/30">
-                <div>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2 py-0.5 rounded">Parceiros</span>
-                        <i class="fa-solid fa-rectangle-ad text-slate-400"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-800 text-sm">Portal de Serviços & Seguros</h3>
-                    <p class="text-xs text-slate-600 mt-1">
-                        Consulte planos de assistência rodoviária e serviços mecânicos parceiros.
-                    </p>
                 </div>
-                <a href="#portal-anuncios" onclick="navegarParaPortalAnuncios(event)" class="mt-4 w-full border border-sky-600 text-sky-600 hover:bg-sky-600 hover:text-white font-medium py-2 px-3 rounded-lg text-xs transition text-center flex items-center justify-center gap-2">
+            </article>
+
+            <!-- Módulo 5: Portal de Anúncios -->
+            <article class="bento-card bento-anuncios">
+                <div class="anuncios-conteudo">
+                    <div class="card-cabecalho">
+                        <span class="badge-parceiros">Parceiros</span>
+                        <i class="fa-solid fa-rectangle-ad icone-muted"></i>
+                    </div>
+                    <h3>Portal de Serviços & Seguros</h3>
+                    <p>Consulte planos de assistência rodoviária e serviços mecânicos parceiros.</p>
+                </div>
+                <a href="#portal-anuncios" onclick="navegarParaPortalAnuncios(event)" class="btn-portal">
                     Aceder ao Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
-            </div>
+            </article>
 
         </div>
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-white border-t border-slate-200 py-4 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            &copy; 2026 SPSR - Sistema de Prevenção e Segurança Rodoviária.
-        </div>
+    <footer class="rodape-principal">
+        <p>&copy; 2026 SPSR - Sistema de Prevenção e Segurança Rodoviária.</p>
     </footer>
 
-    <!-- Ficheiro de Lógica e Endpoints -->
+    <!-- Script JS -->
     <script src="script.js"></script>
 </body>
+
 </html>
