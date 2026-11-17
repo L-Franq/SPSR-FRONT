@@ -1,6 +1,6 @@
 import "tailwindcss";
 import styles from "../dashboard.module.css";
-import { FaBullhorn, FaPlusCircle } from "react-icons/fa6";
+import { FaPlusCircle, FaBullhorn } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 export default function RegistroDeOcorrencias() {

@@ -1,5 +1,6 @@
 import styles from "../dashboard.module.css";
-import { FaListUl, FaTriangleExclamation } from "react-icons/fa";
+import { FaListUl } from "react-icons/fa";
+import { FaTriangleExclamation } from "react-icons/fa6";
 
 export default function ListaDeOcorrencias(){
     return (

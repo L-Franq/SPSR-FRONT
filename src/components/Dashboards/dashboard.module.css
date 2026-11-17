@@ -19,7 +19,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-body.pagina-dashboard {
+.pagina_dashboard {
     background-color: var(--bg-main);
     color: var(--text-dark);
     min-height: 100vh;
@@ -138,6 +138,22 @@ body.pagina-dashboard {
     width: 8px;
     height: 8px;
     background-color: #10B981;
+    border-radius: 50%;
+}
+
+.user_status_n {
+    font-size: 0.75rem;
+    color: #fc1109;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+.ponto_status_n {
+    width: 8px;
+    height: 8px;
+    background-color: #fc1109;
     border-radius: 50%;
 }
 

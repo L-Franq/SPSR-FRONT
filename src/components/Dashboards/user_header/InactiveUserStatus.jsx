@@ -1,10 +1,11 @@
-import "tailwindcss";
+import styles from "../dashboard.module.css"
 
-export default function InactiveUserStatus({ StatusDescription }) {
+export default function InactiveUserStatus() {
   return (
     <>
-      <span className="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
-      <i>{StatusDescription}</i>
+      <span className={styles.user_status_n}>
+              <span className={styles.ponto_status_n}></span> Inativo
+            </span>
     </>
   );
 }

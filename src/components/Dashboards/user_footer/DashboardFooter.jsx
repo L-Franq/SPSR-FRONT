@@ -5,7 +5,7 @@ export default function DashboardFooter() {
 
   return (
     <footer className={styles.rodape_principal}>
-      <p>&copy; `${anoAtual} SPSR - Sistema de Prevenção e Segurança Rodoviária.`</p>
+      <p>&copy; {anoAtual} SPSR - Sistema de Prevenção e Segurança Rodoviária.</p>
     </footer>
   );
 }

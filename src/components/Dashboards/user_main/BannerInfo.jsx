@@ -6,29 +6,29 @@ import {
 
 export default function BannerInformativo({ isPainelRefresh, zonaDetalhes }) {
   return (
-    <section classNameName={styles.banner_zona}>
-      <div classNameName={styles.banner_detalhes}>
-        <div classNameName={styles.banner_icone}>
+    <section className={styles.banner_zona}>
+      <div className={styles.banner_detalhes}>
+        <div className={styles.banner_icone}>
           <i>
             <FaLocationDot />
           </i>
         </div>
-        <div classNameName={styles.banner_texto}>
+        <div className={styles.banner_texto}>
           <h2>
-            Zona Atual:
-            <span id="zona-atual" classNameName={styles.texto_destaque}>
+            Zona Atual:&nbsp; 
+            <span id="zona-atual" className={styles.texto_destaque}>
               {zonaDetalhes.zonaAtual}
             </span>
           </h2>
           <p>
-            Nível de Risco:
-            <span classNameName={styles.texto_alerta}>{zonaDetalhes.nivelDeRisco}</span>
+            Nível de Risco:&nbsp; 
+            <span className={styles.texto_alerta}>{zonaDetalhes.nivelDeRisco}</span>
           </p>
         </div>
       </div>
       <button
         onClick={isPainelRefresh}
-        classNameName={styles.btn_atualizar}
+        className={styles.btn_atualizar}
       >
         <i id="icone-atualizar">
           <FaRotateRight />

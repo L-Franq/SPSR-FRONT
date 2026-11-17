@@ -9,13 +9,14 @@ export default function DashboardHeader(){
     {/* Cabeçalho Principal / Navegação */}
 
     const [userName, setUserName ] = useState("carregando...");
-    const [userStatus, setUSerStatus ] = useState(true);
+    const [userStatus, setUSerStatus ] = useState(false);
 
     useEffect(()=>{
         document.title = "SPSR - Dashboard do Utilizador";
 
         const buscarDadosUsuario = async()=>{
-            const token = localStorage.getItem("token_eu");
+            try {
+                const token = localStorage.getItem("token_eu");
             const response = await fetch("http://192.168.137.113:8000/api/v1/user", {
                 method: "GET",
                 headers: {
@@ -24,12 +25,21 @@ export default function DashboardHeader(){
                 }
             });
 
-            const dadosServer = await response.json();
+            if(response.ok){
+                const dadosServer = await response.json();
             const userName = dadosServer.name;
             const status = true;
 
             setUserName(userName);
             setUSerStatus(status);
+            }
+
+            setUSerStatus(false);
+
+            } catch (error) {
+                console.error("Erro na conexao: ", error);
+                setUSerStatus(false);
+            }
         }
 
         buscarDadosUsuario();
@@ -83,7 +93,7 @@ export default function DashboardHeader(){
                     <div className={styles.user_info}>
                         <p className={styles.user_nome} id="nome-utilizador">{userName}</p>
                         <span className={styles.user_status}>
-                            {userStatus ? <ActiveUserStatus StatusDescription="Ativo" /> : <InactiveUserStatus StatusDescription="Inativo" />}
+                            {userStatus ? <ActiveUserStatus /> : <InactiveUserStatus StatusDescription="Inativo" />}
                         </span>
                     </div>
                     <div className={styles.user_avatar}>
