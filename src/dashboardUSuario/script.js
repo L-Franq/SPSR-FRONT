@@ -1,23 +1,16 @@
 /* ==========================================================================
-   ROTAS DOS ENDPOINTS 
+   CONFIGURAÇÃO E INICIALIZAÇÃO LIMPA DO SISTEMA
    ========================================================================== */
-const ROTAS_API = {
-    obterOcorrenciasZona: '/api/v1/ocorrencias/zona',
-    obterHistoricoUtilizador: '/api/v1/ocorrencias/usuario',
-    redirecionarFormularioReporte: '/ocorrencias/novo',
-    redirecionarPortalAnuncios: '/portal-anuncios'
-};
 
 let mapaLeaflet = null;
 
-// Garante o disparo seguro e compat�vel com diferentes navegadores.
+// Garante o disparo seguro ao carregar a página
 document.addEventListener('DOMContentLoaded', function () {
     inicializarMapa();
-    carregarDadosPainel();
 });
 
 /* ==========================================================================
-   1. INICIALIZA��O DO MAPA 
+   1. INICIALIZAÇÃO DO MAPA E MARCADORES ESTÁTICOS
    ========================================================================== */
 function inicializarMapa() {
     const elementoMapa = document.getElementById('map');
@@ -32,122 +25,60 @@ function inicializarMapa() {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(mapaLeaflet);
 
-    // Corre��o de Bug do Chrome onde o mapa por vezes carrega incompleto
+    // Marcadores estáticos posicionados diretamente no mapa
+    const marcadores = [
+        { tipo: 'Obras na Pista', local: 'Via Expressa - KM 14', lat: -8.83833, lng: 13.23444 },
+        { tipo: 'Buraco Grave', local: 'Avenida Fidel Castro', lat: -8.85000, lng: 13.25000 }
+    ];
+
+    marcadores.forEach(item => {
+        L.marker([item.lat, item.lng])
+            .addTo(mapaLeaflet)
+            .bindPopup(`<b>${item.tipo}</b><br>${item.local}`);
+    });
+
+    // Correção de Bug do Chrome onde o mapa por vezes carrega incompleto
     setTimeout(() => {
         mapaLeaflet.invalidateSize();
     }, 200);
 }
 
 /* ==========================================================================
-   2. CONSUMO DE ENDPOINTS DA API
-   ========================================================================== */
-async function carregarDadosPainel() {
-    try {
-        const [respostaZona, respostaUtilizador] = await Promise.all([
-            fetch(ROTAS_API.obterOcorrenciasZona),
-            fetch(ROTAS_API.obterHistoricoUtilizador)
-        ]);
-
-        if (!respostaZona.ok || !respostaUtilizador.ok) {
-            throw new Error("Aguardando conexao com os endpoints.");
-        }
-
-        const dadosZona = await respostaZona.json();
-        const dadosUtilizador = await respostaUtilizador.json();
-
-        renderizarOcorrenciasZona(dadosZona);
-        renderizarHistoricoUtilizador(dadosUtilizador);
-        renderizarMarcadoresMapa(dadosZona);
-
-    } catch (erro) {
-        console.warn("Endpoints desconectados. Exibindo estado pronto para recep��o:", erro);
-        document.getElementById('lista-ocorrencias-zona').innerHTML = `
-            <p class="mensagem-vazia">Nenhuma ocorr�ncia encontrada nesta zona.</p>
-        `;
-    }
-}
-
-/* ==========================================================================
-   3. RENDERIZA��O DE COMPONENTES VISUAIS 
+   2. AÇÕES DE INTERAÇÃO & MODAIS (SWEETALERT2)
    ========================================================================== */
 
-function renderizarOcorrenciasZona(listaDeOcorrencias) {
-    const container = document.getElementById('lista-ocorrencias-zona');
-    const contador = document.getElementById('contador-ocorrencias-zona');
-
-    if (!listaDeOcorrencias || listaDeOcorrencias.length === 0) {
-        contador.innerText = "0";
-        container.innerHTML = `<p class="mensagem-vazia">Nenhuma ocorr�ncia registrada nesta zona.</p>`;
-        return;
-    }
-
-    contador.innerText = listaDeOcorrencias.length;
-
-    container.innerHTML = listaDeOcorrencias.map(item => `
-        <div class="item-ocorrencia">
-            <div class="item-left">
-                <i class="fa-solid fa-triangle-exclamation icone-sky"></i>
-                <div>
-                    <h4 class="item-titulo">${item.tipo}</h4>
-                    <p class="item-subtitulo">${item.local}</p>
-                </div>
-            </div>
-            <span class="badge-status badge-sky">${item.status}</span>
-        </div>
-    `).join('');
-}
-
-function renderizarMarcadoresMapa(listaDeOcorrencias) {
-    if (!listaDeOcorrencias || !mapaLeaflet) return;
-
-    listaDeOcorrencias.forEach(item => {
-        if (item.latitude && item.longitude) {
-            L.marker([item.latitude, item.longitude])
-                .addTo(mapaLeaflet)
-                .bindPopup(`<b>${item.tipo}</b><br>${item.local}`);
-        }
+function dispararAlertaEmergencia() {
+    Swal.fire({
+        title: 'Alerta SOS Activado',
+        text: 'A enviar a sua localização de emergência para as autoridades...',
+        icon: 'warning',
+        confirmButtonColor: '#DC2626'
     });
 }
 
-function renderizarHistoricoUtilizador(dadosDoUtilizador) {
-    if (!dadosDoUtilizador) return;
-
-    document.getElementById('estatistica-total').innerText = dadosDoUtilizador.totalEnviados || 0;
-    document.getElementById('estatistica-pendentes').innerText = dadosDoUtilizador.pendentesAnalise || 0;
-    document.getElementById('estatistica-resolvidos').innerText = dadosDoUtilizador.resolvidos || 0;
-
-    const container = document.getElementById('lista-historico-utilizador');
-
-    if (!dadosDoUtilizador.historicoRecente || dadosDoUtilizador.historicoRecente.length === 0) {
-        container.innerHTML = `<p class="mensagem-vazia">Sem hist�rico registado.</p>`;
-        return;
-    }
-
-    container.innerHTML = dadosDoUtilizador.historicoRecente.map(item => `
-        <div class="item-ocorrencia">
-            <span class="item-titulo">${item.tipo}</span>
-            <span class="badge-status badge-amber">${item.status}</span>
-        </div>
-    `).join('');
+function atualizarDadosPainel() {
+    Swal.fire({
+        title: 'Atualizado',
+        text: 'Os dados do painel foram atualizados com sucesso.',
+        icon: 'success',
+        timer: 1200,
+        showConfirmButton: false
+    });
 }
-
-/* ==========================================================================
-   4. A��ES DE INTERA��O & MODAIS (SWEETALERT2)
-   ========================================================================== */
 
 function abrirModalReportar() {
     Swal.fire({
-        title: 'Reportar Ocorr�ncia',
-        text: 'Deseja abrir o formul�rio detalhado de registro de ocorr�ncias?',
+        title: 'Reportar Ocorrência',
+        text: 'Deseja abrir o formulário detalhado de registo de ocorrências?',
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#0284C7',
         cancelButtonColor: '#475569',
-        confirmButtonText: 'Sim, Abrir Formul�rio',
+        confirmButtonText: 'Sim, Abrir Formulário',
         cancelButtonText: 'Cancelar'
     }).then((resultado) => {
         if (resultado.isConfirmed) {
-            window.location.href = ROTAS_API.redirecionarFormularioReporte;
+            window.location.href = '/ocorrencias/novo';
         }
     });
 }
@@ -156,11 +87,11 @@ function navegarParaPortalAnuncios(evento) {
     evento.preventDefault();
     Swal.fire({
         title: 'Redirecionamento',
-        text: 'A reencaminhar para o Portal de An�ncios...',
+        text: 'A reencaminhar para o Portal de Anúncios...',
         icon: 'info',
         timer: 1200,
         showConfirmButton: false
     }).then(() => {
-        window.location.href = ROTAS_API.redirecionarPortalAnuncios;
+        window.location.href = '/portal-anuncios';
     });
 }

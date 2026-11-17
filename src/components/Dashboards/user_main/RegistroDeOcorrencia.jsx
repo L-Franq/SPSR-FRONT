@@ -1,52 +1,47 @@
 import "tailwindcss";
 import styles from "../dashboard.module.css";
-import { FaClockRotateLeft } from "react-icons/fa6";
+import { FaBullhorn, FaPlusCircle } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 export default function RegistroDeOcorrencias() {
+  function abrirModalReportar() {
+    Swal.fire({
+      title: "Reportar Ocorrência",
+      text: "Deseja abrir o formulário detalhado de registo de ocorrências?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#0284C7",
+      cancelButtonColor: "#475569",
+      confirmButtonText: "Sim, Abrir Formulário",
+      cancelButtonText: "Cancelar",
+    }).then((resultado) => {
+      if (resultado.isConfirmed) {
+        window.location.href = "/ocorrencias/novo";
+      }
+    });
+  }
+
   return (
-    <div className={styles.bento_card && styles.bento_history && "flex flex-col justify-between"}>
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <i className="text-sky-600"><FaClockRotateLeft />9*</i>
-          <h2 className="font-bold text-slate-800">Meu Histórico</h2>
+    <article className={styles.bento_card && styles.bento_reportar}>
+      <div className={styles.reportar_conteudo}>
+        <div className={styles.reportar_badge}>
+          <i>
+            <FaBullhorn />
+          </i>
+          <span>Ação Rápida</span>
         </div>
-        <span className="text-xs text-slate-500">Minhas participações</span>
+        <h2>Presenciou uma Ocorrência?</h2>
+        <p>
+          Reporte acidentes, vias bloqueadas ou buracos graves para alertar
+          outros condutores.
+        </p>
       </div>
-
-      <div className="grid grid-cols-3 gap-2 mb-3 text-center">
-        <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-          <p
-            className="text-lg font-bold text-slate-800"
-            id="estatistica-total"
-          >
-            0
-          </p>
-          <p className="text-[10px] text-slate-500 uppercase">Enviados</p>
-        </div>
-        <div className="bg-amber-50 p-2 rounded-lg border border-amber-100">
-          <p
-            className="text-lg font-bold text-amber-600"
-            id="estatistica-pendentes"
-          >
-            0
-          </p>
-          <p className="text-[10px] text-amber-600 uppercase">Em Análise</p>
-        </div>
-        <div className="bg-emerald-50 p-2 rounded-lg border border-emerald-100">
-          <p
-            className="text-lg font-bold text-emerald-600"
-            id="estatistica-resolvidos"
-          >
-            0
-          </p>
-          <p className="text-[10px] text-emerald-600 uppercase">Resolvidos</p>
-        </div>
-      </div>
-
-      <div
-        id="lista-historico-utilizador"
-        className="space-y-2 overflow-y-auto max-h-[120px] barra-scroll-personalizada"
-      ></div>
-    </div>
+      <button onClick={abrirModalReportar} className={styles.btn_reportar_acao}>
+        <i>
+          <FaPlusCircle />
+        </i>
+        Reportar Nova Ocorrência
+      </button>
+    </article>
   );
 }

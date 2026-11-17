@@ -1,31 +1,42 @@
 import styles from "../dashboard.module.css";
 import { FaRectangleAd, FaArrowUpRightFromSquare } from "react-icons/fa6";
+import Swal from "sweetalert2"
 
 export default function Anuncios() {
+
+function navegarParaPortalAnuncios(evento) {
+    evento.preventDefault();
+
+    Swal.fire({
+        title: 'Redirecionamento',
+        text: 'A reencaminhar para o Portal de Anúncios...',
+        icon: 'info',
+        timer: 1200,
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = '/portal-anuncios';
+    });
+}
+
   return (
-    <div className={styles.bento_card && styles.bento_ads && "flex flex-col justify-between border-sky-100 bg-sky-50/30"}>
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2 py-0.5 rounded">
-            Parceiros
-          </span>
-          <i className="text-slate-400"><FaRectangleAd /></i>
+    <article className={styles.bento_card && styles.bento_anuncios}>
+      <div className={styles.anuncios_conteudo}>
+        <div className={styles.card_cabecalho}>
+          <span className={styles.badge_parceiros}>Parceiros</span>
+          <i className={styles.icone_muted}><FaRectangleAd /></i>
         </div>
-        <h3 className="font-bold text-slate-800 text-sm">
-          Portal de Serviços & Seguros
-        </h3>
-        <p className="text-xs text-slate-600 mt-1">
+        <h3>Portal de Serviços & Seguros</h3>
+        <p>
           Consulte planos de assistência rodoviária e serviços mecânicos
           parceiros.
         </p>
       </div>
       <a
-        href="#portal-anuncios"
-        className="mt-4 w-full border border-sky-600 text-sky-600 hover:bg-sky-600 hover:text-white font-medium py-2 px-3 rounded-lg text-xs transition text-center flex items-center justify-center gap-2"
+        onClick={navegarParaPortalAnuncios}
+        className={styles.btn_portal}
       >
-        Aceder ao Portal{" "}
-        <i><FaArrowUpRightFromSquare /></i>
+        Aceder ao Portal <i><FaArrowUpRightFromSquare /></i>
       </a>
-    </div>
+    </article>
   );
 }

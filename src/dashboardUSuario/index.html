@@ -16,7 +16,7 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="../">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="pagina-dashboard">
@@ -92,18 +92,37 @@
                 <div id="map"></div>
             </article>
 
-            <!-- Módulo 2: Ocorrências na Zona -->
+            <!-- Módulo 2: Ocorrências na Zona (Renderizado Estaticamente) -->
             <article class="bento-card bento-zona">
                 <div class="card-cabecalho">
                     <div class="card-titulo">
                         <i class="fa-solid fa-list-ul icone-sky"></i>
                         <h2>Ocorrências na Zona</h2>
                     </div>
-                    <span id="contador-ocorrencias-zona" class="badge-contador">0</span>
+                    <span id="contador-ocorrencias-zona" class="badge-contador">2</span>
                 </div>
 
                 <div id="lista-ocorrencias-zona" class="lista-scroll">
-                    <p class="mensagem-vazia">A carregar ocorrências...</p>
+                    <div class="item-ocorrencia">
+                        <div class="item-left">
+                            <i class="fa-solid fa-triangle-exclamation icone-sky"></i>
+                            <div>
+                                <h4 class="item-titulo">Obras na Pista</h4>
+                                <p class="item-subtitulo">Via Expressa - KM 14</p>
+                            </div>
+                        </div>
+                        <span class="badge-status badge-sky">Em Análise</span>
+                    </div>
+                    <div class="item-ocorrencia">
+                        <div class="item-left">
+                            <i class="fa-solid fa-triangle-exclamation icone-sky"></i>
+                            <div>
+                                <h4 class="item-titulo">Buraco Grave</h4>
+                                <p class="item-subtitulo">Avenida Fidel Castro</p>
+                            </div>
+                        </div>
+                        <span class="badge-status badge-sky">Pendente</span>
+                    </div>
                 </div>
             </article>
 
@@ -123,7 +142,7 @@
                 </button>
             </article>
 
-            <!-- Módulo 4: Registro Pessoal -->
+            <!-- Módulo 4: Registo Pessoal (Renderizado Estaticamente) -->
             <article class="bento-card bento-historico">
                 <div class="card-cabecalho">
                     <div class="card-titulo">
@@ -135,21 +154,28 @@
 
                 <div class="estatisticas-grid">
                     <div class="estatistica-box">
-                        <p class="estatistica-numero" id="estatistica-total">0</p>
+                        <p class="estatistica-numero" id="estatistica-total">3</p>
                         <p class="estatistica-label">Enviados</p>
                     </div>
                     <div class="estatistica-box box-alerta">
-                        <p class="estatistica-numero" id="estatistica-pendentes">0</p>
+                        <p class="estatistica-numero" id="estatistica-pendentes">1</p>
                         <p class="estatistica-label">Em Análise</p>
                     </div>
                     <div class="estatistica-box box-sucesso">
-                        <p class="estatistica-numero" id="estatistica-resolvidos">0</p>
+                        <p class="estatistica-numero" id="estatistica-resolvidos">2</p>
                         <p class="estatistica-label">Resolvidos</p>
                     </div>
                 </div>
 
                 <div id="lista-historico-utilizador" class="lista-scroll lista-curta">
-
+                    <div class="item-ocorrencia">
+                        <span class="item-titulo">Obstáculo na Via</span>
+                        <span class="badge-status badge-amber">Resolvido</span>
+                    </div>
+                    <div class="item-ocorrencia">
+                        <span class="item-titulo">Semáforo Avariado</span>
+                        <span class="badge-status badge-amber">Em Análise</span>
+                    </div>
                 </div>
             </article>
 
