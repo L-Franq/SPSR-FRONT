@@ -1,9 +1,9 @@
-import "tailwindcss"
 import { useState, useEffect } from "react";
 import { FaTriangleExclamation, FaUser, FaShieldHalved } from "react-icons/fa6";
-import "../dashboard.module.css";
+import styles from "../dashboard.module.css";
 import ActiveUserStatus from "./ActiveUSerStatus";
 import InactiveUserStatus from "./InactiveUserStatus"
+import Swal from "sweetalert2"
 
 export default function DashboardHeader(){
     {/* Cabeçalho Principal / Navegação */}
@@ -12,7 +12,7 @@ export default function DashboardHeader(){
     const [userStatus, setUSerStatus ] = useState(true);
 
     useEffect(()=>{
-        document.title = "dashboard";
+        document.title = "SPSR - Dashboard do Utilizador";
 
         const buscarDadosUsuario = async()=>{
             const token = localStorage.getItem("token_eu");
@@ -35,37 +35,59 @@ export default function DashboardHeader(){
         buscarDadosUsuario();
     }, [])
 
+    const dispararAlertaEmergencia =  function () {
+    Swal.fire({
+        title: 'Emitir Alerta SOS?',
+        text: 'Isso irá enviar à sua localização atual imediatamente às autoridades.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DC2626',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Confirmar SOS',
+        cancelButtonText: 'Cancelar'
+    }).then((resultado) => {
+        if (resultado.isConfirmed) {
+            Swal.fire({
+                title: 'Alerta Enviado!',
+                text: 'Sua localização foi transmitida para a central.',
+                icon: 'success',
+                confirmButtonColor: '#0284C7'
+            });
+        }
+    });
+}
+
 
     return ( 
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow-sm">
-                    <FaShieldHalved />
+        <header className={styles.cabecalho_principal}>
+        <div className={styles.cabecalho_conteudo}>
+            <div className={styles.brand_area}>
+                <div className={styles.brand_icone}>
+                    <i><FaShieldHalved /></i>
                 </div>
-                <div>
-                    <h1 className="font-bold text-slate-800 leading-tight text-base sm:text-lg">Painel de Segurança Rodoviária</h1>
-                    <p className="text-xs text-slate-500 hidden sm:block">Prevenção e Segurança em Tempo Real</p>
+                <div className={styles.brand_texto}>
+                    <h1 className={styles.brand_titulo}>Painel de Segurança Rodoviária</h1>
+                    <p className={styles.brand_subtitulo}>Prevenção e Segurança em Tempo Real</p>
                 </div>
             </div>
 
-            <div className="flex items-center gap-4">
-                <button className="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 border border-red-200">
-                    <FaTriangleExclamation />
-                    <span className="hidden sm:inline">Alerta SOS</span>
+            <div className={styles.user_actions_area}>
+                <button onClick={dispararAlertaEmergencia} className={styles.btn_sos}>
+                    <i><FaTriangleExclamation /></i>
+                    <span>Alerta SOS</span>
                 </button>
 
-                <div className="h-8 w-px bg-slate-200"></div>
+                <div className={styles.divisor_vertical}></div>
 
-                <div className="flex items-center gap-3">
-                    <div className="text-right hidden sm:block">
-                        <p className="text-sm font-semibold text-slate-800" id="nome-utilizador">{userName}</p>
-                        <span className="text-xs text-emerald-600 flex items-center justify-end gap-1">
-                            {userStatus ? <ActiveUserStatus StatusDescription="ATIVO" /> : <InactiveUserStatus StatusDescription="INATIVO" />}
+                <div className={styles.user_profile}>
+                    <div className={styles.user_info}>
+                        <p className={styles.user_nome} id="nome-utilizador">{userName}</p>
+                        <span className={styles.user_status}>
+                            {userStatus ? <ActiveUserStatus StatusDescription="Ativo" /> : <InactiveUserStatus StatusDescription="Inativo" />}
                         </span>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-600 font-medium">
-                        <FaUser />
+                    <div className={styles.user_avatar}>
+                        <i><FaUser /></i>
                     </div>
                 </div>
             </div>
