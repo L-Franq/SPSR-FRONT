@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Utilizador / SPR-Sistema de Prevenção Rodoviária</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="CSS/perfil-estilo.css">
+</head>
+<body class="pagina-perfil">
+
+    <header class="cabecalho-principal">
+        <div class="cabecalho-conteudo">
+            <div class="brand-area">
+                <div class="brand-icone">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="brand-texto">
+                    <h1 class="brand-titulo">SPR</h1>
+                    <p class="brand-subtitulo">Sistema de Prevenção Rodoviária</p>
+                </div>
+            </div>
+
+            <nav class="nav-voltar">
+                <a href="index.html" class="link-voltar">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar à Dashboard
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteudo-principal">
+
+        <div class="perfil-container">
+
+            <aside class="perfil-card-lateral">
+                <div class="avatar-grande-wrapper">
+                    <div class="avatar-grande">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <button type="button" class="btn-alterar-foto" title="Alterar fotografia">
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+                </div>
+
+                <h2 class="perfil-nome-exibicao">Nerissa Chindombe</h2>
+                <p class="perfil-cargo-exibicao">Condutora Registada</p>
+
+                <div class="perfil-status-badge">
+                    <span class="ponto-status"></span> Conta Verificada
+                </div>
+
+                <div class="perfil-info-rapida">
+                    <div class="info-item-rapido">
+                        <i class="fa-solid fa-id-card"></i>
+                        <span>BI: 004829182LA042</span>
+                    </div>
+                    <div class="info-item-rapido">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Membro desde: Outubro 2026</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Coluna Direita: Formulário de Dados Pessoais -->
+            <section class="perfil-card-formulario">
+                <div class="card-cabecalho-form">
+                    <div class="card-titulo">
+                        <i class="fa-solid fa-user-pen icone-sky"></i>
+                        <h2>Dados Pessoais e de Conta</h2>
+                    </div>
+                    <p class="card-subtitulo-form">Consulte e atualize as suas informações de identificação e contacto.</p>
+                </div>
+
+                <form id="form-atualizar-perfil" class="form-grid" onsubmit="submeterAtualizacaoPerfil(event)">
+
+                    <div class="form-grupo">
+                        <label for="nome">Nome Completo</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="nome" name="nome" value="Nerissa Chindombe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="email">Endereço de E-mail</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="email" value="nerissa.chindombe@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="telemovel">Número de Telemóvel</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="telemovel" name="telemovel" value="+244 923 456 789" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="idade">Idade</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-cake-candles"></i>
+                            <input type="number" id="idade" name="idade" value="28" min="18" max="120" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="bi">Número do Bilhete de Identidade (BI)</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-address-card"></i>
+                            <input type="text" id="bi" name="bi" value="004829182LA042" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="morada">Morada Residencial</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input type="text" id="morada" name="morada" value="Luanda, Via Expressa" required>
+                        </div>
+                    </div>
+
+                    <div class="form-acoes">
+                        <button type="reset" class="btn-secundario">Cancelar Alterações</button>
+                        <button type="submit" class="btn-primario">Salvar Alterações</button>
+                    </div>
+
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <rodape class="rodape-principal">
+        <p>&copy; 2026 SPR - Sistema de Prevenção Rodoviária.</p>
+    </rodape>
+
+    <script src="JS/perfil-script.js"></script>
+</body>
+</html>
