@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Cadastro from "./Cadastro"
 import Login from "./Login"
 import DashboardUser from "./DashUser"
+import UserProfile from "./UserProfile";
 
 export default function App() {
   return(
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/cadastro" element={<Cadastro />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/dashboard" element={<DashboardUser />}/>
+      <Route path="/dashboard/perfil" element={<UserProfile />}/>
     </Routes>
   )
 }
