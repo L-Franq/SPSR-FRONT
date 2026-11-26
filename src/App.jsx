@@ -12,7 +12,7 @@ export default function App() {
       <Route path="/cadastro" element={<Cadastro />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/dashboard" element={<DashboardUser />}/>
-      <Route path="/dashboard/perfil" element={<UserProfile />}/>
+      <Route path="/perfil" element={<UserProfile />}/>
     </Routes>
   )
 }

@@ -74,7 +74,7 @@ export default function DashboardHeader() {
   function goProfile(e) {
     e.stopPropagation();
 
-    window.location.href = "/dashboard/perfil";
+    window.location = "/perfil";
   }
 
   return (
@@ -88,10 +88,10 @@ export default function DashboardHeader() {
           </div>
           <div className={styles.brand_texto}>
             <h1 className={styles.brand_titulo}>
-              Painel de Segurança Rodoviária
+              Painel de Actividade
             </h1>
             <p className={styles.brand_subtitulo}>
-              Prevenção e Segurança em Tempo Real
+              Prevenção em Tempo Real
             </p>
           </div>
         </div>

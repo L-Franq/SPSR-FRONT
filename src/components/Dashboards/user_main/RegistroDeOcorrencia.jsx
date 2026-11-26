@@ -1,4 +1,3 @@
-import "tailwindcss";
 import styles from "../dashboard.module.css";
 import { FaPlusCircle, FaBullhorn } from "react-icons/fa";
 import Swal from "sweetalert2";

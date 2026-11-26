@@ -23,7 +23,7 @@ export default function ProfileHeader() {
           <a href="/dashboard" className={styles.link_voltar}>
             <i>
               <FaArrowLeft />
-            </i>{" "}
+            </i>
             Voltar à Dashboard
           </a>
         </nav>

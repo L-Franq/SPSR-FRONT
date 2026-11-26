@@ -6,7 +6,7 @@ import ProfileMain from "./components/Dashboards/user_perfil/ProfileMain";
 export default function UserProfile() {
   return (
     <div className={styles.pagina_perfil}>
-      <ProfileHeader />
+      <ProfileHeader />7
       <ProfileMain />
       <ProfileFooter />
     </div>
