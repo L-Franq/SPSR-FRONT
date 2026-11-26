@@ -1,5 +1,5 @@
 import styles from "../../cadastro.module.css";
-import { FaLocationDot, FaShieldHalved, FaMapLocationDot, FaBullhorn, FaUsers } from "react-icons/fa6";
+import { FaLocationDot, FaShieldHalved, FaMapLocationDot, FaUsers } from "react-icons/fa6";
 
 export default function CadastroVisual(){
     return(
@@ -11,14 +11,14 @@ export default function CadastroVisual(){
             </div>
 
             <span>
-              SPSR<span className={styles.brand_dot}>.</span>
+              SAPAR<span className={styles.brand_dot}>.</span>
             </span>
           </div>
 
           <div className={styles.visual_text}>
-            <span className="tag">
+            <span className={styles.tag}>
               <i><FaShieldHalved /></i>&nbsp;
-              SEGURANCA RODOVIARIA
+              PREVENÇÃO RODOVIÁRIA
             </span>
 
             <h1>Faça parte de uma comunidade mais segura.</h1>
@@ -38,17 +38,6 @@ export default function CadastroVisual(){
               <div>
                 <h3>Monitorização local</h3>
                 <p>Acompanhe ocorrências na sua comunidade.</p>
-              </div>
-            </div>
-
-            <div className={styles.feature_item}>
-              <div className={styles.feature_icon}>
-                <i><FaBullhorn /></i>
-              </div>
-
-              <div>
-                <h3>Reportes rápidos</h3>
-                <p>Ajude a comunicar situações importantes.</p>
               </div>
             </div>
           </div>

@@ -78,7 +78,8 @@ const loginUser = async(e)=>{
 }
 
   return (
-    <main className={styles.login_container}>
+    <div className={styles.bo}>
+      <main className={styles.login_container}>
       <section className={styles.login_visual}>
         <div className={styles.visual_content}>
           <div className={styles.brand}>
@@ -88,7 +89,7 @@ const loginUser = async(e)=>{
               </i>
             </div>
             <span>
-              SPSR<span className={styles.brand_dot}>.</span>
+              SAPAR<span className={styles.brand_dot}>.</span>
             </span>
           </div>
 
@@ -97,7 +98,7 @@ const loginUser = async(e)=>{
               <i>
                 <FaShieldHalved />
               </i>
-              SEGURANCA RODOVIARIA
+              PREVENÇÃO RODOVIÁRIA
             </span>
 
             <h1>Juntos por uma comunidade mais segura.</h1>
@@ -217,5 +218,7 @@ const loginUser = async(e)=>{
         </div>
       </section>
     </main>
-  );
+
+    </div>
+      );
 }

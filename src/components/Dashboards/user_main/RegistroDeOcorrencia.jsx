@@ -1,4 +1,4 @@
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import { FaPlusCircle, FaBullhorn } from "react-icons/fa";
 import Swal from "sweetalert2";
 
@@ -21,7 +21,7 @@ export default function RegistroDeOcorrencias() {
   }
 
   return (
-    <article className={styles.bento_card && styles.bento_reportar}>
+    <article className={`${styles.bento_card} ${styles.bento_reportar}`}>
       <div className={styles.reportar_conteudo}>
         <div className={styles.reportar_badge}>
           <i>
@@ -35,7 +35,7 @@ export default function RegistroDeOcorrencias() {
           outros condutores.
         </p>
       </div>
-      <button onClick={abrirModalReportar} className={styles.btn_reportar_acao}>
+      <button onClick={abrirModalReportar} className={styles.btn_reportar_accao}>
         <i>
           <FaPlusCircle />
         </i>

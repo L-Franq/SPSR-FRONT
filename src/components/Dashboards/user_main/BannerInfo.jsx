@@ -1,4 +1,4 @@
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import {
   FaLocationDot,
   FaRotateRight,
@@ -8,7 +8,7 @@ export default function BannerInformativo({ isPainelRefresh, zonaDetalhes }) {
   return (
     <section className={styles.banner_zona}>
       <div className={styles.banner_detalhes}>
-        <div className={styles.banner_icone}>
+        <div className={styles.banner_icon}>
           <i>
             <FaLocationDot />
           </i>

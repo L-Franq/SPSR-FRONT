@@ -1,4 +1,4 @@
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { FaMapLocationDot, FaExclamation } from "react-icons/fa6";
@@ -39,7 +39,7 @@ export default function MapaInteractivo() {
 
   return (
     <article className={`${styles.bento_card} ${styles.bento_mapa}`}>
-      <div className={styles.card_cabecalho}>
+      <div className={styles.card_cabecalhos}>
         <div className={styles.card_titulo}>
           <i className={styles.icone_sky}>
             <FaMapLocationDot />

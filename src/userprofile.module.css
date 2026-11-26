@@ -106,7 +106,7 @@
   padding: 0 1.5rem;
 }
 
-.perfil_conatiner {
+.perfil_container {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 1.5rem;
@@ -231,7 +231,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
-.card_cabecalho_form {
+.card_cabecalhos_form {
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #e2e8f0;
   padding-bottom: 1rem;
@@ -371,7 +371,7 @@
 
 /* Responsividade */
 @media (max-width: 900px) {
-  .perfil_conatiner {
+  .perfil_container {
     grid-template-columns: 1fr;
   }
 

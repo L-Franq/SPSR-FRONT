@@ -1,11 +1,11 @@
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import { FaListUl } from "react-icons/fa";
 import { FaTriangleExclamation } from "react-icons/fa6";
 
 export default function ListaDeOcorrencias(){
     return (
-        <article className={styles.bento_card && styles.bento_zona}>
-                <div className={styles.card_cabecalho}>
+        <article className={`${styles.bento_card} ${styles.bento_zona}`}>
+                <div className={styles.card_cabecalhos}>
                     <div className={styles.card_titulo}>
                         <i className={styles.icone_sky}><FaListUl /></i>
                         <h2>Ocorrências na Zona</h2>
@@ -22,7 +22,7 @@ export default function ListaDeOcorrencias(){
                                 <p className={styles.item_subtitulo}>Via Expressa - KM 14</p>
                             </div>
                         </div>
-                        <span className={styles.badge_status && styles.badge_sky}>Em Análise</span>
+                        <span className={`${styles.badge_status} ${styles.badge_sky}`}>Em Análise</span>
                     </div>
                     <div className={styles.item_ocorrencia}>
                         <div className={styles.item_left}>
@@ -32,7 +32,7 @@ export default function ListaDeOcorrencias(){
                                 <p className={styles.item_subtitulo}>Avenida Fidel Castro</p>
                             </div>
                         </div>
-                        <span className={styles.badge_status && styles.badge_sky}>Pendente</span>
+                        <span className={`${styles.badge_status} ${styles.badge_sky}`}>Pendente</span>
                     </div>
                 </div>
             </article>

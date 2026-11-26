@@ -3,7 +3,6 @@ import {
   FaLocationDot,
   FaUser,
   FaEnvelope,
-  FaPhone,
   FaLock,
   FaArrowRight,
 } from "react-icons/fa6";
@@ -17,9 +16,8 @@ import AlertaDosistema from "./Alerta";
 export default function Cadastro() {
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    contacto: "",
     password: "",
-    phone: "",
   });
 
   function handleChange(e) {
@@ -130,7 +128,7 @@ export default function Cadastro() {
               </div>
             </div>
             <div className={styles.form_group}>
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="email">Contacto</label>
 
               <div className={styles.input_wrapper}>
                 <i>
@@ -138,27 +136,10 @@ export default function Cadastro() {
                 </i>
 
                 <input
-                  type="email"
+                  type="text"
                   id="email"
-                  name="email"
-                  placeholder="exemplo@email.com"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className={styles.form_group}>
-              <label htmlFor="phone">Número de telefone</label>
-
-              <div className={styles.input_wrapper}>
-                <i>
-                  <FaPhone />
-                </i>
-
-                <input
-                  id="phone"
-                  name="phone"
-                  placeholder="+244 9XX XXX XXX"
+                  name="contacto"
+                  placeholder="e-mail ou telefone"
                   required
                   onChange={handleChange}
                 />

@@ -1,7 +1,7 @@
 import { FaUserPen } from "react-icons/fa6";
-import styles from "../../../userprofile.module.css";
-import ProfileMainAside from "./ProfileMainAside";
-import ProfileForm from "./ProfileForm";
+import styles from "./userprofile.module.css";
+import ProfileMainAside from "./components/Dashboards/user_perfil/ProfileMainAside";
+import ProfileForm from "./components/Dashboards/user_perfil/ProfileForm";
 
 export default function ProfileMain() {
   return (
@@ -10,7 +10,7 @@ export default function ProfileMain() {
         <ProfileMainAside />
 
         <section className={styles.perfil_card_formulario}>
-          <div className={styles.card_cabecalho_form}>
+          <div className={styles.card_cabecalhos_form}>
             <div className={styles.card_titulo}>
               <i className={styles.icone_sky}>
                 <FaUserPen />

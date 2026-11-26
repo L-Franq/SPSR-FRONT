@@ -1,4 +1,4 @@
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import { FaRectangleAd, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import Swal from "sweetalert2"
 
@@ -19,9 +19,9 @@ function navegarParaPortalAnuncios(evento) {
 }
 
   return (
-    <article className={styles.bento_card && styles.bento_anuncios}>
+    <article className={`${styles.bento_card} ${styles.bento_anuncios}`}>
       <div className={styles.anuncios_conteudo}>
-        <div className={styles.card_cabecalho}>
+        <div className={styles.card_cabecalhos}>
           <span className={styles.badge_parceiros}>Parceiros</span>
           <i className={styles.icone_muted}><FaRectangleAd /></i>
         </div>

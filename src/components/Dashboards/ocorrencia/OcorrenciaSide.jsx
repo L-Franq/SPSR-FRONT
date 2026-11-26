@@ -11,12 +11,12 @@ export default function OcorrenciaSide() {
           </i>
         </div>
         <div>
-          SPSR<small>Sistema de Prevenção e Segurança Rodoviário</small>
+          SAPAR<small>Sistema de Alertas e Prevenção de Acidentes Rodoviários</small>
         </div>
       </div>
 
       <div className={styles.side_bottom}>
-        SPSR · Sistema de Prevenção e Segurança Rodoviário
+        SAPAR · Sistema de Alertas e Prevenção de Acidentes Rodoviários
       </div>
     </aside>
   );

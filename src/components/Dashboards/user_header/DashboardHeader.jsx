@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
 import { FaTriangleExclamation, FaUser, FaShieldHalved } from "react-icons/fa6";
-import styles from "../dashboard.module.css";
+import styles from "../../../dashboard.module.css";
 import ActiveUserStatus from "./ActiveUSerStatus";
 import InactiveUserStatus from "./InactiveUserStatus";
 import Swal from "sweetalert2";
 
 export default function DashboardHeader() {
-  {
-    /* Cabeçalho Principal / Navegação */
-  }
-
   const [userName, setUserName] = useState("carregando...");
   const [userStatus, setUSerStatus] = useState(false);
 
   useEffect(() => {
-    document.title = "SPSR - Dashboard do Utilizador";
+    document.title = "SAPAR - Dashboard do Utilizador";
 
     const buscarDadosUsuario = async () => {
       try {
@@ -32,14 +28,11 @@ export default function DashboardHeader() {
 
         if (response.ok) {
           const dadosServer = await response.json();
-          const userName = dadosServer.name;
-          const status = true;
-
-          setUserName(userName);
-          setUSerStatus(status);
+          setUserName(dadosServer.name || "Utilizador");
+          setUSerStatus(true);
+        } else {
+          setUSerStatus(false);
         }
-
-        setUSerStatus(false);
       } catch (error) {
         console.error("Erro na conexao: ", error);
         setUSerStatus(false);
@@ -73,7 +66,6 @@ export default function DashboardHeader() {
 
   function goProfile(e) {
     e.stopPropagation();
-
     window.location = "/perfil";
   }
 
@@ -87,17 +79,17 @@ export default function DashboardHeader() {
             </i>
           </div>
           <div className={styles.brand_texto}>
-            <h1 className={styles.brand_titulo}>
-              Painel de Actividade
-            </h1>
-            <p className={styles.brand_subtitulo}>
-              Prevenção em Tempo Real
-            </p>
+            <h1 className={styles.brand_titulo}>Painel de Actividade</h1>
+            <p className={styles.brand_subtitulo}>Prevenção em Tempo Real</p>
           </div>
         </div>
 
         <div className={styles.user_actions_area}>
-          <button onClick={dispararAlertaEmergencia} className={styles.btn_sos}>
+          <button
+            type="button"
+            onClick={dispararAlertaEmergencia}
+            className={styles.btn_sos}
+          >
             <i>
               <FaTriangleExclamation />
             </i>
